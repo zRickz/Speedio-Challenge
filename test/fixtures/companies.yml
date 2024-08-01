@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_fantasia: MyString
+  razao_social: MyString
+  data_abertura: 2024-07-31
+  cnpj: MyString
+  status: MyString
+  cnae: 
+  endereco: 
+  contato: 
+  website: MyString
+
+two:
+  nome_fantasia: MyString
+  razao_social: MyString
+  data_abertura: 2024-07-31
+  cnpj: MyString
+  status: MyString
+  cnae: 
+  endereco: 
+  contato: 
+  website: MyString
