@@ -12,9 +12,9 @@ class Company
   field :endereco, type: Hash
   field :contato, type: Hash
   field :website, type: String
+  field :linkedin, type: String
 
   index_name "companies"
-  document_type "company"
 
   settings do
     mappings dynamic: false do
@@ -27,6 +27,7 @@ class Company
       indexes :endereco, type: :object
       indexes :contato, type: :object
       indexes :website, type: :text
+      indexes :linkedin, type: :text
     end
   end
 
