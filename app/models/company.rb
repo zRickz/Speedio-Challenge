@@ -13,7 +13,8 @@ class Company
   field :contato, type: Hash
   field :website, type: String
 
-  index_name [Rails.env, "companies"].join('_')
+  index_name "companies"
+  document_type "company"
 
   settings do
     mappings dynamic: false do
@@ -39,6 +40,12 @@ class Company
           }
         }
       }
+    )
+  end
+
+  def as_indexed_json(options = {})
+    as_json(
+      only: [:nome_fantasia, :razao_social, :data_abertura, :cnpj, :status, :cnae, :endereco, :contato, :website]
     )
   end
 end

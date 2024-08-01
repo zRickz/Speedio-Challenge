@@ -2,14 +2,7 @@
 
 ## Instruções de Inicialização
 
-1. **Configuração do Ambiente**
-
-   Antes de iniciar a aplicação, configure o arquivo `.env` de acordo com as variáveis de ambiente necessárias.
-
-2. **Inicialização da Aplicação**
-
-   Após a configuração do `.env`, inicie a aplicação utilizando Docker Compose. Execute o seguinte comando no terminal:
-
+1. **Inicialização e Configuração da Aplicação**
    ```bash
    docker-compose up
    ```
@@ -24,7 +17,6 @@
 
 ## Principais Tecnologias Utilizadas
 - **Ruby on Rails**: API
-- **Rake**: Gerenciamento de rotinas/tasks
 - **Nokogiri**: Scrapping de páginas
 - **Mongoid**: Conexão, Execução de comandos e mais com MongoDB
 - **Elastic Search**: Motor de busca

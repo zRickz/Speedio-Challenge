@@ -22,17 +22,30 @@ services:
     container_name: api
     depends_on:
       - elasticsearch
+      - mongodb
     ports:
       - "3000:3000"
-    env_file:
-      - .env
     volumes:
       - .:/api
     networks:
       - backend
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: Companies
+    networks:
+      - backend
+
 volumes:
   esdata:
+    driver: local
+  mongo_data:
     driver: local
 
 networks:
