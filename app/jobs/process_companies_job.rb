@@ -11,7 +11,7 @@ class ProcessCompaniesJob < ApplicationJob
     cnpj_info_extractor_base_url = "https://api-publica.speedio.com.br/buscarcnpj"
     common_emails = ["gmail", "yahoo", "hotmail", "outlook", "uol", "live", "mail"]
 
-    (1..25).each do |page_number|
+    (1..30).each do |page_number|
       Rails.logger.info "Buscando CNPJs na página #{page_number}..."
 
       cnpj_extractor_body = Nokogiri::HTML(URI.open("#{cnpj_extractor_base_url}=#{page_number}"))
@@ -63,20 +63,19 @@ class ProcessCompaniesJob < ApplicationJob
               email: cnpj_infos["EMAIL"],
               telefone_maps: nil
             },
-            linkedin: nil
-            website: website
+            linkedin: nil,
+            website: website,
+            coletando_info: false
           })
 
-          company.save
-
-          Company.__elasticsearch__.index_document(id: company.id, body: company.as_indexed_json)
+          company.save!
         rescue => e
           Rails.logger.error "Erro ao cadastrar um CNPJ, pulando para o próximo... #{e.message}"
           next
         end
       end
 
-      sleep 1
+      sleep 2
     end
   end
 end
