@@ -1,24 +1,30 @@
-# README
+# Speedio Challenge - API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instruções de Inicialização
 
-Things you may want to cover:
+1. **Configuração do Ambiente**
 
-* Ruby version
+   Antes de iniciar a aplicação, configure o arquivo `.env` de acordo com as variáveis de ambiente necessárias.
 
-* System dependencies
+2. **Inicialização da Aplicação**
 
-* Configuration
+   Após a configuração do `.env`, inicie a aplicação utilizando Docker Compose. Execute o seguinte comando no terminal:
 
-* Database creation
+   ```bash
+   docker-compose up
+   ```
+   
+   Isso iniciará todos os serviços configurados no Docker Compose, incluindo a aplicação e quaisquer serviços auxiliares necessários.
 
-* Database initialization
+## Rotas Disponíveis
+- /buscar
+  - **Parâmetro**: query (obrigatório): CNPJ com apenas números ou nome da empresa para realizar a busca.
+  - **Método**: GET
+  - **Retorno**: Uma lista com os resultados da busca. A lista pode incluir informações sobre o CNPJ ou Nome da empresa, conforme os dados disponíveis.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Principais Tecnologias Utilizadas
+- **Ruby on Rails**: API
+- **Rake**: Gerenciamento de rotinas/tasks
+- **Nokogiri**: Scrapping de páginas
+- **Mongoid**: Conexão, Execução de comandos e mais com MongoDB
+- **Elastic Search**: Motor de busca
