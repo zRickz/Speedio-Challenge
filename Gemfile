@@ -29,7 +29,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'net-pop', github: 'ruby/net-pop'
+gem "net-pop", github: "ruby/net-pop"
+
+gem "httparty"
 
 gem "mongoid"
 

@@ -13,6 +13,7 @@ class Company
   field :contato, type: Hash
   field :website, type: String
   field :linkedin, type: String
+  field :coletando_info, type: Boolean
 
   index_name "companies"
 
@@ -28,6 +29,7 @@ class Company
       indexes :contato, type: :object
       indexes :website, type: :text
       indexes :linkedin, type: :text
+      indexes :coletando_info, type: :boolean
     end
   end
 
@@ -46,7 +48,7 @@ class Company
 
   def as_indexed_json(options = {})
     as_json(
-      only: [:nome_fantasia, :razao_social, :data_abertura, :cnpj, :status, :cnae, :endereco, :contato, :website]
+      only: [:nome_fantasia, :razao_social, :data_abertura, :cnpj, :status, :cnae, :endereco, :contato, :website, :linkedin]
     )
   end
 end
