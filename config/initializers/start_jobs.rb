@@ -1,4 +1,4 @@
 Rails.application.config.after_initialize do
-  ProcessCompaniesJob.perform_now
-  CollectMoreCompanyInfoJob.perform_now
+  ProcessCompaniesJob.perform_later
+  CollectMoreCompanyInfoJob.perform_later
 end

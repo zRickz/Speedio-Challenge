@@ -1,14 +1,15 @@
-require 'nokogiri'
-require 'httparty'
-
 class CollectMoreCompanyInfoJob < ApplicationJob
   queue_as :default
 
   INTERVAL = 2
 
-  def perform
-    company = Company.where(coletando_info: false).first
-    
+  def perform(cnpj = nil)
+    company = if cnpj
+                Company.find_by(cnpj: cnpj)
+              else
+                Company.where(coletando_info: false).first
+              end
+
     if company
       company.update(coletando_info: true)
 
@@ -17,7 +18,10 @@ class CollectMoreCompanyInfoJob < ApplicationJob
       body = find_in_google("#{company_name} informacoes", true)
 
       if body.nil?
-        return nil
+        if company_id.nil?
+          self.class.set(wait: INTERVAL.seconds).perform_later
+        end
+        return
       end
 
       doc = Nokogiri::HTML(body)
@@ -48,10 +52,9 @@ class CollectMoreCompanyInfoJob < ApplicationJob
           company.update(linkedin: linkedin_search_result)
         end
       end
-
     end
 
-    self.class.set(wait: INTERVAL.seconds).perform_later
+
   end
 
   private
@@ -84,5 +87,4 @@ class CollectMoreCompanyInfoJob < ApplicationJob
       link ? extract_main_url(link['href']) : nil
     end
   end
-  
 end
